@@ -4,7 +4,7 @@ var name = file_names[Math.floor(Math.random()*file_names.length)];
 var interval;
 
 function load_censored() {
-	$('.image-container').(function (index, value) {
+	$('.image-container').each(function (index, value) {
 		name = file_names[Math.floor(Math.random()*file_names.length)];
 		$(this).fadeToggle(40, function() {
 			$(this).children('img').attr('src', '../scripts/data/processed/' + name + '.png');
