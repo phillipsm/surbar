@@ -51,7 +51,7 @@ with open('data/data.json', 'r') as file:
 		else:
 			color = random.choice(colors)
 
-		draw.line((x3,y3,x4,y4), fill=random.choice(colors), width=int(line_padding))
+		draw.line((x3,y3,x4,y4), fill=color, width=int(line_padding))
 
 		del draw
 
