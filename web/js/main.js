@@ -4,12 +4,12 @@ var name = file_names[Math.floor(Math.random()*file_names.length)];
 var interval;
 
 function load_censored() {
-	$('.image-container').each(function (index, value) {
+	$('.image-container').(function (index, value) {
 		name = file_names[Math.floor(Math.random()*file_names.length)];
-		$(this).fadeToggle(65, function() {
+		$(this).fadeToggle(40, function() {
 			$(this).children('img').attr('src', '../scripts/data/processed/' + name + '.png');
 			$(this).children('span').html(name);
-			$(this).fadeToggle(65);
+			$(this).fadeToggle(40);
 			clearInterval(interval);
 			interval = window.setInterval(load_censored, 8000);
   		});
