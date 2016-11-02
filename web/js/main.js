@@ -7,6 +7,7 @@ function load_censored() {
 	$('.image-container').each(function (index, value) {
 		name = file_names[Math.floor(Math.random()*file_names.length)];
 		$(this).fadeToggle(40, function() {
+			$('<img src="../scripts/data/processed/' + name + '.png" />'); // preload the image
 			$(this).children('img').attr('src', '../scripts/data/processed/' + name + '.png');
 			$(this).children('span').html(name);
 			$(this).fadeToggle(40);

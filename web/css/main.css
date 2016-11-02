@@ -16,7 +16,7 @@ body {
 	top: 50%;
 	transform: translateY(-50%);*/
 	margin-top: 80px;
-	border: 2px #b0ff30 solid;
+	border: 1px #ddd solid;
 }
 
 .image-container .random-name {
