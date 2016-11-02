@@ -10,7 +10,7 @@ function draw() {
 		color_picker = int(floor(random(0,10)));
 
 		if (color_picker < 7) {
-    		stroke('#888');
+    		stroke('#00363F');
 		} else if (color_picker == 7) {
 			stroke('#b0ff30');
 		} else {
