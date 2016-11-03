@@ -12,8 +12,8 @@ function load_censored() {
 		name = file_names[Math.floor(Math.random()*file_names.length)];		
 	}
 
-	if (recently_displayed.length == file_names.length/2) {
-		recently_displayed.push(name);
+	recently_displayed.push(name);
+	if (recently_displayed.length === file_names.length/2) {
 		recently_displayed.pop();
 	}
 
