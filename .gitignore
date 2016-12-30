@@ -1,1 +1,6 @@
 .DS_Store
+data/source-images
+data/source-images-backup
+data/source-images-untouched
+data/results/with-colored-bars/altered-images/
+data/results/with-colored-bars-additive/altered-images/

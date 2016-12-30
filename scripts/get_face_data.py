@@ -3,38 +3,58 @@ import os, time, json
 
 api_url = 'https://api.projectoxford.ai/face/v1.0/detect'
 
-payload = {
+payload = { 'returnFaceId': 'true',
 			'returnFaceAttributes': 'age,gender,smile,glasses',
 			'returnFaceLandmarks': 'true',
 		   }
 
 headers = {
 			'Content-Type': 'application/json',
-			'Ocp-Apim-Subscription-Key': 'your sub key',
+			'Ocp-Apim-Subscription-Key': '',
 		  }
 
 
 
-for dir in os.listdir('images-with-data'):
-	face_data_for_dir = []
-	print 'images-with-data/' + dir
-	for image in os.listdir('images-with-data/' + dir):
-		url = 'http://public facing path to images/%s/%s' % (dir, image)
+import pdb, glob
 
-		request_data = {
-    		'url': url,
-		   }
-		print "facing %s/%s" % (dir, image)
-		r = requests.post(api_url, json=request_data, headers=headers, params=payload)
-		face_data = json.loads(r.text)
-		print face_data
-		if face_data and isinstance(face_data, list):
-			face_data = json.loads(r.text)[0]
-			face_data['localName'] = image
-			face_data_for_dir.append(face_data)
-		else:
-			print "ERROR  %s/%s" % (dir, image)
-		time.sleep(4)
+#pdb.set_trace()
+for image in glob.glob('data/processed/*'):#os.listdir('data/processed/'):
+	
 
-	with open('images-with-data/' + dir + '/data.json', 'a') as outfile:
-	    json.dump(face_data_for_dir, outfile, sort_keys=True, indent=4, separators=(',', ': '))
+	url = 'http://location.tld/%s' % image
+	request_data = {
+		'url': url,
+	   }
+	print url
+	r = requests.post(api_url, json=request_data, headers=headers, params=payload)
+	face_data = json.loads(r.text)
+
+
+	if face_data and isinstance(face_data, list):
+		ff = []
+
+		for face in face_data:
+			face['localName'] = image
+			ff.append(face)
+
+		with open('data/data.json', 'r+') as f:
+			stored_data = f.read()
+
+			if stored_data:
+				existing = json.loads(stored_data)
+			else:
+				existing = []
+
+			existing.append(ff)
+
+			f.seek(0)
+			f.write(json.dumps(existing, sort_keys=True, indent=4, separators=(',', ': ')))
+			f.truncate()
+
+		print "%s has %s faces" % (image, len(face_data))
+
+	else:
+		print "ERROR %s" % image
+
+
+	time.sleep(4)
