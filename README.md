@@ -5,6 +5,32 @@ a collection of quickly written chunks of logic to identify pupil positions, dra
 
 the previous experiemnt [cenbar](https://github.com/phillipsm/cenbar) is closely related
 
+
+### Helpful commands when playing with surbar
+
+add bars to each image
+`$python draw_on_images.py`
+
+draw sticky bars on frames -- when a bar is drawn, it doesn't disappear, subsequent sticky bars are added
+`$python draw_on_images_additive.py`
+
+draw bars for each face - all on one image
+`$python draw_one_image.py`
+
+
+get xy coords for pupils for faces in an image
+`$python get_numbers.py`
+
+
+resize all images
+`$convert ‘*.JPG[1200x]' resized%03d.png`
+
+
+jpegs -> mpg
+`$convert -delay 18 -compress None *.JPG movie.mpg`
+
+
+
 ## License
 
 Dual licensed under the MIT license (below) and [GPL license](http://www.gnu.org/licenses/gpl-3.0.html).
